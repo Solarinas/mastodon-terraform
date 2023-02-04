@@ -20,9 +20,9 @@ variable "secret_key" {
 }
 
 # SSH keys
-variable "pub_key" {
-  default = "/var/home/solarinas/.ssh/solarinas.pub"
-}
+variable "ssh_pub_key" {}
+
+variable "ssh_prvt_key" {}
 
 variable "do_ssh_key" {
   default = "solarinas"

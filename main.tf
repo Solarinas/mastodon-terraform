@@ -53,7 +53,8 @@ module "cdn" {
 module "mastodon" {
   source = "./applications/mastodon"
 
-  pub_key = var.pub_key
+  ssh_pub_key = var.ssh_pub_key
+  ssh_prvt_key = var.ssh_prvt_key
   do_ssh_key = var.do_ssh_key
 
   vpc_id = module.network.vpc_id

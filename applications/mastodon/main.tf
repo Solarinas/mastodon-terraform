@@ -71,7 +71,7 @@ resource "digitalocean_droplet" "mastodon" {
 
   user_data = templatefile(var.mastodon_init,
     {
-      pub_key = file(var.pub_key)
+      pub_key = file(var.ssh_pub_key)
     })
 
   volume_ids = [
@@ -82,11 +82,21 @@ resource "digitalocean_droplet" "mastodon" {
     var.mastodon_tag,
   ]
 
-  lifecycle {
-    create_before_destroy = true
+  provisioner "remote-exec" {
+    inline = ["sudo dnf install -y python"]
+
+    connection {
+      host = self.ipv4_address
+      type = "ssh"
+      user = "solar"
+      private_key = file(var.ssh_prvt_key)
+    }
   }
 
   provisioner "local-exec" {
+    environment = {
+      ANSIBLE_CONFIG = "${path.root}/playbooks/mastodon-playbook/ansible.cfg"
+    }
     command = "ansible-playbook -i ${digitalocean_droplet.mastodon.ipv4_address}, -e ansible_ssh_user=solar playbooks/mastodon-playbook/setup.yml"
   }
 }

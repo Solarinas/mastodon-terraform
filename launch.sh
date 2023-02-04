@@ -9,6 +9,8 @@ TF_VAR_cf_token=$(pass cf_token)
 TF_VAR_zone_id=$(pass zone_id)
 TF_VAR_access_key=$(pass do_space_access)
 TF_VAR_secret_key=$(pass do_space_secret)
+TF_VAR_ssh_pub_key=$(pass ssh_pub_key)
+TF_VAR_ssh_prvt_key=$(pass ssh_prvt_key)
 
 # formatted_list [list]
 #
@@ -95,6 +97,8 @@ export TF_VAR_cf_token
 export TF_VAR_zone_id
 export TF_VAR_access_key
 export TF_VAR_secret_key
+export TF_VAR_ssh_pub_key
+export TF_VAR_ssh_prvt_key
 
 terraform init \
           -backend-config="access_key=$TF_VAR_access_key" \

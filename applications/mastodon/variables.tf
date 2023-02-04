@@ -6,7 +6,9 @@ variable "mastodon_init" {
   default = "./applications/mastodon/mastodon.tftpl"
 }
 
-variable pub_key {}
+variable ssh_pub_key {}
+
+variable ssh_prvt_key {}
 
 variable do_ssh_key {}
 
