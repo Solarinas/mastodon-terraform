@@ -87,6 +87,6 @@ resource "digitalocean_droplet" "mastodon" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${digitalocean_droplet.mastodon.ipv4_address}, -e ansible_ssh_user=solar playbooks/mastodon-paybook/setup.yml"
+    command = "ansible-playbook -i ${digitalocean_droplet.mastodon.ipv4_address}, -e ansible_ssh_user=solar playbooks/mastodon-playbook/setup.yml"
   }
 }
